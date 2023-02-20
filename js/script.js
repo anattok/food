@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     //функция добаволяет ноль если число от 1 до 9
     function getZero(num) {
-        if (num >= 0 && num < 10){
+        if (num >= 0 && num < 10) {
             return `0${num}`;
         }
 
@@ -94,4 +94,46 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     setClock('.timer', deadline)
+
+
+    //Modal модальное окно
+
+    const modalTrigger = document.querySelectorAll('[data-modal]');
+    const modal = document.querySelector('.modal');
+    const modalCloseBtn = document.querySelector('[data-close]');
+
+    //находим все кнопки которые открывают модальное окно и вешаем на них собылие клик
+    modalTrigger.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+        });
+    })
+
+    function closeModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    //вешаем событие клик на крестик модального окна
+    modalCloseBtn.addEventListener('click', () => {
+        closeModal()
+    });
+
+    //вешаем событие клик на затемнённую подложку
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal()
+        }
+    })
+
+    //закрытие модального окна по кнопке Esc
+    //посмотреть другие значения кнопок в event.code https://www.toptal.com/developers/keycode
+    document.addEventListener('keydown', (e)=>{
+        if(e.code === "Escape" && modal.classList.contains('show')){
+            closeModal()
+        }
+    })
 });
