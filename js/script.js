@@ -143,7 +143,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    const modalTimerId = setTimeout(openModal, 6000)//открываем модальное окно через промежуток времени
+    // const modalTimerId = setTimeout(openModal, 6000)//открываем модальное окно через промежуток времени
 
 
     //если пользователь долистал до конца (минут 1 рх исправление бага для ращные браузеров не открывалось окно) появляется модалка, 
@@ -154,4 +154,79 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.addEventListener('scroll', showModalByScroll);
+
+
+
+
+    //menu
+
+    const menu = [
+        {
+            src: 'img/tabs/vegy.jpg',
+            alt: 'vegy',
+            title: 'Меню "Фитнес"',
+            text: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+            price: 229
+        },
+        {
+            src: 'img/tabs/elite.jpg',
+            alt: 'elite',
+            title: 'Меню “Премиум”',
+            text: 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+            price: 550
+        },
+        {
+            src: 'https://eda.yandex.ru/images/1387779/1f34a88909e68b85bbdd8c77462bb04d-1100x825.jpg',
+            alt: 'shaverma',
+            title: 'Шаверма "Братуха" классика',
+            text: 'Шаурма — обжаренное на вертикальном гриле мясо в лаваше, тонкой пите, пресной лепешке, приправленное овощами и соусами. ',
+            price: 256
+        }
+
+    ]
+
+
+    class CardMenu {
+        constructor(src, alt, title, text, price, parentSelector) {
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.text = text;
+            this.price = price;
+            this.parent = document.querySelector(parentSelector);
+        }
+
+        render() {
+            const element = document.createElement('div');
+            element.classList.add('menu__item')
+
+            element.innerHTML = `
+            <img src=${this.src} alt=${this.alt}>
+            <h3 class="menu__item-subtitle">${this.title}</h3>
+            <div class="menu__item-descr">${this.text}</div>
+            <div class="menu__item-price">
+                <div class="menu__item-cost">Цена:</div>
+                <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+            </div>`;
+
+            this.parent.append(element);
+        }
+    }
+
+    menu.forEach(cart => {
+        new CardMenu(
+            cart.src,
+            cart.alt,
+            cart.title,
+            cart.text,
+            cart.price,
+            '.menu .container'
+        ).render()
+    })
+
 });
+
+
+
+
+
