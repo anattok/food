@@ -143,7 +143,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    // const modalTimerId = setTimeout(openModal, 6000)//открываем модальное окно через промежуток времени
+    const modalTimerId = setTimeout(openModal, 6000)//открываем модальное окно через промежуток времени
 
 
     //если пользователь долистал до конца (минут 1 рх исправление бага для ращные браузеров не открывалось окно) появляется модалка, 
@@ -155,24 +155,21 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     window.addEventListener('scroll', showModalByScroll);
 
-
-
-
     //menu
 
     const menu = [
         {
-            src: 'img/tabs/vegy.jpg',
-            alt: 'vegy',
-            title: 'Меню "Фитнес"',
-            text: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-            price: 229
+            src: 'https://sensey64.ru/uploads/images/artleo.com-30924.jpg',
+            alt: 'rolly',
+            title: 'Роллы "Азиатики" набор',
+            text: 'Роллы - одна из разновидностей суши в японской кухне, отличительной особенностью которой является скручивание в цилиндрическую форму, с последующим разрезанием на дольки.',
+            price: 890
         },
         {
-            src: 'img/tabs/elite.jpg',
-            alt: 'elite',
-            title: 'Меню “Премиум”',
-            text: 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+            src: 'https://static.fanpage.it/wp-content/uploads/sites/22/2021/09/beef-burger.jpg',
+            alt: 'berger',
+            title: 'Сочный бургер "Толстяк"',
+            text: 'Классический бургер  – это жареная котлета из говяжьего  фарша между двумя половинками разрезанной булочки, с листком салата, долькой помидора и репчатым луком. ',
             price: 550
         },
         {
@@ -180,7 +177,28 @@ window.addEventListener('DOMContentLoaded', () => {
             alt: 'shaverma',
             title: 'Шаверма "Братуха" классика',
             text: 'Шаурма — обжаренное на вертикальном гриле мясо в лаваше, тонкой пите, пресной лепешке, приправленное овощами и соусами. ',
-            price: 256
+            price: 250
+        },
+        {
+            src: 'https://cdn.vkuso.ru/uploads/75356_9134526002859f3270a1871fbedd6cd4_190519-020358.jpg',
+            alt: 'wings',
+            title: 'Сочные куринные крылышки BBQ',
+            text: 'Куриные крылышки — одна из самых популярных закусок, очень вкусное и при этом простое в приготовлении блюдо. ',
+            price: 420
+        },
+        {
+            src: 'https://cdn.lifehacker.ru/wp-content/uploads/2020/06/6_1592925463-scaled-e1592925524667.jpg',
+            alt: 'soup',
+            title: 'Соляночка с копчёными колбасками',
+            text: 'Солянка (или селянка) – блюдо традиционной русской кухни, густой пряный и острый суп, сваренный на крепком мясном бульоне с обязательным добавлением солёных огурцов.',
+            price: 330
+        },
+        {
+            src: 'http://www.menslife.com/upload/iblock/4be/piknik_po_korolevski_kak_prigotovit_idealnyy_shashlyk.jpg',
+            alt: 'meat',
+            title: 'Свиной шашлык "Не убежала"',
+            text: 'Буквально, «шашлык» — это мясное кушанье, зажаренное на вертеле над огнем или углями.',
+            price: 590
         }
 
     ]
@@ -206,7 +224,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="menu__item-descr">${this.text}</div>
             <div class="menu__item-price">
                 <div class="menu__item-cost">Цена:</div>
-                <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                <div class="menu__item-total"><span>${this.price}</span> РУБ</div>
             </div>`;
 
             this.parent.append(element);
