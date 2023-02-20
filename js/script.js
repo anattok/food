@@ -105,11 +105,17 @@ window.addEventListener('DOMContentLoaded', () => {
     //находим все кнопки которые открывают модальное окно и вешаем на них собылие клик
     modalTrigger.forEach(btn => {
         btn.addEventListener('click', () => {
-            modal.classList.add('show');
-            modal.classList.remove('hide');
-            document.body.style.overflow = 'hidden';
+            openModal()
         });
     })
+
+    function openModal() {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'hidden';
+
+        clearInterval(modalTimerId) // очищаем интервал, для того чтобы если пользователь сам его открыл, то он не появлялось через заданое количество секунд
+    }
 
     function closeModal() {
         modal.classList.add('hide');
@@ -131,9 +137,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
     //закрытие модального окна по кнопке Esc
     //посмотреть другие значения кнопок в event.code https://www.toptal.com/developers/keycode
-    document.addEventListener('keydown', (e)=>{
-        if(e.code === "Escape" && modal.classList.contains('show')){
+    document.addEventListener('keydown', (e) => {
+        if (e.code === "Escape" && modal.classList.contains('show')) {
             closeModal()
         }
     })
+
+    const modalTimerId = setTimeout(openModal, 6000)//открываем модальное окно через промежуток времени
+
+
+    //если пользователь долистал до конца (минут 1 рх исправление бага для ращные браузеров не открывалось окно) появляется модалка, 
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+            openModal();
+            window.removeEventListener('scroll', showModalByScroll);//убираем слушатель, чтобы мдалка не появлялась второй раз
+        }
+    }
+    window.addEventListener('scroll', showModalByScroll);
 });
